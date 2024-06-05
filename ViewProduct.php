@@ -1,0 +1,1 @@
+<!-- sulod dereh is the view nah makita tanan details areh sa product nga nakah modal siya so mao ranah siya  -->
