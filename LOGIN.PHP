@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
     <form action="" method="post">
@@ -58,7 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" placeholder="Password" name="password" value="">
             </div>
             <input class="button" type="submit" name="Login" value="Sign-in">
+            <a href="Sign-up.php">Sign-up</a>
         </div>
     </form>
+    <!-- Add Bootstrap JS and dependencies (optional, for additional functionality) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

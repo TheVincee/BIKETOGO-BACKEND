@@ -25,10 +25,10 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
+                    <td></td>
                     <td><img src="path_to_image1.jpg" alt="Product 1" class="img-fluid" width="50"></td>
-                    <td>Product</td>
-                    <td>Categor</td>
+                    <td>Product 1</td>
+                    <td>Category 1</td>
                     <td>₱500.00</td>
                     <td>100</td>
                     <td>This is a description of Product 1.</td>
@@ -40,13 +40,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
+                    <td></td>
                     <td><img src="path_to_image2.jpg" alt="Product 2" class="img-fluid" width="50"></td>
-                    <td>Product</td>
-                    <td>Categor</td>
+                    <td>Product 2</td>
+                    <td>Category 2</td>
                     <td>₱1000.00</td>
                     <td>200</td>
-                    <td>This is a description of Product.</td>
+                    <td>This is a description of Product 2.</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
                             <button class="btn btn-info btn-sm">View</button>
