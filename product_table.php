@@ -1,3 +1,6 @@
+<?php 
+require 'connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,16 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Product Table</h2>
+        <?php
+        if(isset($_SESSION['message'])) {
+            echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+            unset($_SESSION['message']);
+        }
+        ?>
+        <div class="d-flex justify-content-between mb-4">
+            <h2>Product Table</h2>
+            <a href="add_product.php" class="btn btn-primary">Create Product</a>
+        </div>
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -24,41 +36,47 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><img src="path_to_image1.jpg" alt="Product 1" class="img-fluid" width="50"></td>
-                    <td>Product</td>
-                    <td>Categor</td>
-                    <td>₱500.00</td>
-                    <td>100</td>
-                    <td>This is a description of Product 1.</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Actions">
-                            <button class="btn btn-info btn-sm">View</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><img src="path_to_image2.jpg" alt="Product 2" class="img-fluid" width="50"></td>
-                    <td>Product</td>
-                    <td>Categor</td>
-                    <td>₱1000.00</td>
-                    <td>200</td>
-                    <td>This is a description of Product.</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Actions">
-                            <button class="btn btn-info btn-sm">View</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
+                <?php 
+                $query = "SELECT * FROM products";
+                $query_run = mysqli_query($con, $query);
+
+                if(mysqli_num_rows($query_run) > 0)
+                {
+                    foreach($query_run as $product)
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo $product['ProductID']; ?></td>
+                            <td><img src="<?php echo $product['Picture']; ?>" alt="Product Image" style="width: 50px; height: auto;"></td>
+                            <td><?php echo $product['ProductName']; ?></td>
+                            <td><?php echo $product['Category']; ?></td>
+                            <td><?php echo $product['Price']; ?></td>
+                            <td><?php echo $product['Quantity']; ?></td>
+                            <td><?php echo $product['Description']; ?></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Actions">
+                                    <a href="ViewProduct.php?ProductID=<?php echo $product['ProductID']; ?>" class="btn btn-primary btn-sm">View</a>
+                                    <form action="delete_product.php" method="POST" class="d-inline">
+                                        <input type="hidden" name="ProductID" value="<?php echo $product['ProductID']; ?>">
+                                        <button type="submit" name="delete_product" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    <a href="update.php?ProductID=<?php echo $product['ProductID']; ?>" class="btn btn-info btn-sm">Update</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    } 
+                }
+                else
+                {
+                    echo "<tr><td colspan='8'><h5>No Records Found</h5></td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
 
+</script>
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
