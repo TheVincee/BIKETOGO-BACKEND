@@ -1,14 +1,14 @@
-<?php 
-$dbhost = "localhost";
+<?php
+$servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "bike-to-go";
+$database = "bike-to-go";
 
-$conn = mysqli_connect($dbhost, $username, $password, $dbname);
+// Create connection
+$con = mysqli_connect($servername, $username, $password, $database);
 
 // Check connection
-if (!$conn) {
-    die("Something went wrong: " . mysqli_connect_error());
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-
 ?>
